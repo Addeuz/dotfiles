@@ -73,3 +73,4 @@ esac
 # Additional PATH exports
 export PATH=$PATH:/opt/gurobi/bin/
 export PATH="$PATH:/home/andreas/.nsccli/bin"
+export PATH="$PATH:/usr/bin/lua"

@@ -93,8 +93,9 @@ export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 #   export EDITOR='nvim'
 # fi
 
-alias zshconfig="vi ~/.zshrc"
-alias ohmyzsh="vi ~/.oh-my-zsh"
+alias zshconfig="nvim ~/.zshrc"
+alias ohmyzsh="nvim ~/.oh-my-zsh"
+alias bashconfig="nvim ~/.zshrc.bashrc"
 
 alias bat="batcat"
 
@@ -102,3 +103,13 @@ alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 # Import ~/.bashrc (2025-09-04) converted to be zsh compatible
 source ~/.zshrc.bashrc
+
+# opencode
+export PATH=/home/andreas/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/home/andreas/.bun/_bun" ] && source "/home/andreas/.bun/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
