@@ -80,9 +80,13 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# just run-tool completion
+source ~/gitrepos/dfmain/tools/rust_tools/completions/completions.zsh
+
 # Plugins configuration
 
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 
 # User configuration
 
@@ -113,3 +117,7 @@ export PATH=/home/andreas/.opencode/bin:$PATH
 # bun
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
+
+# claude
+export PATH="$HOME/.local/bin:$PATH"
+
