@@ -1,6 +1,16 @@
 return {
   "folke/snacks.nvim",
   opts = {
+    picker = {
+      sources = {
+        grep = {
+          args = { "--hidden" },
+        },
+        files = {
+          args = { "--hidden" },
+        },
+      },
+    },
     dashboard = {
       preset = {
         -- Delta Corps Priest 1
