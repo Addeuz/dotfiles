@@ -9,6 +9,10 @@ return {
         files = {
           args = { "--hidden" },
         },
+        explorer = {
+          hidden = true,
+          ignored = true,
+        },
       },
     },
     dashboard = {
