@@ -1,0 +1,188 @@
+{
+  "svelte-component-format": {
+    "prefix": "s-component",
+    "body": [
+      "<script lang=\"ts\">",
+      "\t${1:// your script goes here}",
+      "</script>",
+      "",
+      "${2:<!-- markup (zero or more items) goes here -->}",
+      "<style>",
+      "\t${3:/* your styles go here */}",
+      "</style>"
+    ],
+    "description": "add a script to your svelte file"
+  },
+  "svelte-script-tag": {
+    "prefix": "s-script",
+    "body": [
+      "<script lang=\"ts\">",
+      "\t${1:// your script goes here}",
+      "</script>"
+    ],
+    "description": "add a script to your svelte file"
+  },
+  "svelte-script-context": {
+    "prefix": "s-script-context",
+    "body": [
+      "<script lang=\"ts\" module>",
+      "\t${1:// your script goes here}",
+      "</script>"
+    ],
+    "description": "add a script with context=\"module\" to your svelte file"
+  },
+  "svelte-if": {
+    "prefix": "s-if",
+    "body": ["{#if ${1:condition}}", "\t${2: <!-- content here -->}", "{/if}"],
+    "description": "if block"
+  },
+  "svelte-if-else": {
+    "prefix": "s-if-else",
+    "body": [
+      "{#if ${1:condition}}",
+      "\t${2: <!-- content here -->}",
+      "{:else}",
+      "\t${3: <!-- else content here -->}",
+      "{/if}"
+    ],
+    "description": "if else block"
+  },
+  "svelte-if-else-if": {
+    "prefix": "s-if-else-if",
+    "body": [
+      "{#if ${1:condition}}",
+      "\t${2: <!-- content here -->}",
+      "{:else if ${3: otherCondition}}",
+      "\t${4: <!-- else if content here -->}",
+      "{:else}",
+      "\t${5: <!-- else content here -->}",
+      "{/if}"
+    ],
+    "description": "if else if block"
+  },
+  "svelte-each": {
+    "prefix": "s-each",
+    "body": [
+      "{#each ${1:items} as ${2:item}}",
+      "\t${3: <!-- content here -->}",
+      "{/each}"
+    ],
+    "description": "each block"
+  },
+  "svelte-each-else": {
+    "prefix": "s-each-else",
+    "body": [
+      "{#each ${1:items} as ${2:item}}",
+      "\t${3: <!-- content here -->}",
+      "{:else}",
+      "\t${4: <!-- empty list -->}",
+      "{/each}"
+    ],
+    "description": "each else block"
+  },
+  "svelte-each-index": {
+    "prefix": "s-each-index",
+    "body": [
+      "{#each ${1:items} as ${2:item},${3:i}}",
+      "\t${4: <!-- content here -->}",
+      "{/each}"
+    ],
+    "description": "each index block"
+  },
+  "svelte-each-key": {
+    "prefix": "s-each-key",
+    "body": [
+      "{#each ${1:items} as ${2:item},(${3:key})}",
+      "\t${4: <!-- content here -->}",
+      "{/each}"
+    ],
+    "description": "each index block"
+  },
+  "svelte-each-index-key": {
+    "prefix": "s-each-index-key",
+    "body": [
+      "{#each ${1:items} as ${2:item},i (${3:key})}",
+      "\t${4: <!-- content here -->}",
+      "{/each}"
+    ],
+    "description": "each index key block"
+  },
+  "svelte-await-then": {
+    "prefix": "s-await-then",
+    "body": [
+      "{#await ${1:promise}}",
+      "\t<!-- promise is pending -->",
+      "{:then ${2:value}}",
+      "\t<!-- promise was fulfilled -->",
+      "{/await}"
+    ],
+    "description": "await then block"
+  },
+  "svelte-await-short": {
+    "prefix": "s-await-short",
+    "body": [
+      "{#await ${1:promise} then ${2:value}}",
+      "\t<!-- promise was fulfilled -->",
+      "{/await}"
+    ],
+    "description": "await short block"
+  },
+  "svelte-await-catch": {
+    "prefix": "s-await-catch",
+    "body": [
+      "{#await ${1:promise}}",
+      "\t<!-- ${1:promise} is pending -->",
+      "{:then ${value}}",
+      "\t<!-- ${1:promise} was fulfilled -->",
+      "{:catch error}",
+      "\t<!-- ${1:promise} was rejected -->",
+      "{/await}"
+    ],
+    "description": "await catch block"
+  },
+  "svelte-render": {
+    "prefix": "s-render",
+    "body": ["{@render ${1:name}()}"],
+    "description": "render"
+  },
+  "svelte-snippet": {
+    "prefix": "s-snippet",
+    "body": ["{#snippet ${1:name}}", "\t${2:// content here}", "{/snippet}"],
+    "description": "snippet"
+  },
+  "svelte-on-mount": {
+    "prefix": "s-mount",
+    "body": ["onMount(() => {", "\t${1:// content here}", "});"],
+    "description": "onMount lifecycle function"
+  },
+  "svelte-on-destory": {
+    "prefix": "s-destroy",
+    "body": ["onDestroy(() => {", "\t${1:// content here}", "});"],
+    "description": "onDestroy lifecycle function"
+  },
+  "svelte-state": {
+    "prefix": "s-state",
+    "body": ["let ${1:state} = \\$state(${2:initValue});"],
+    "description": "svelte state rune"
+  },
+  "svelte-init-state": {
+    "prefix": "s-init-state",
+    "body": [
+      "let ${1:state} = \\$derived.by(() => {",
+      "\tlet _ = \\$state(${2:initValue});",
+      "\treturn _;",
+      "});"
+    ],
+    "description": "svelte init state rune with derived value"
+  },
+  "svelte-derived": {
+    "prefix": "s-derived",
+    "body": ["const ${1:derived} = \\$derived(${2:value});"],
+    "description": "svelte derived rune"
+  },
+  "svelte-effect": {
+    "prefix": "s-effect",
+    "body": ["\\$effect(() => {", "\t${1:// content here}", "});"],
+    "description": "svelte effect rune"
+  }
+}
