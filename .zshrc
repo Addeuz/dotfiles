@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
+export COLORTERM=truecolor
+
 # Custom ZSH path so it can be tracked with git
 export ZSH_CUSTOM="$HOME/.config/zsh/custom"
 
@@ -105,6 +107,8 @@ alias bat="batcat"
 
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias lazygitcfg='lazygit --git-dir=$HOME/.cfg --work-tree=$HOME'
+
+alias dev="sh $HOME/scripts/dev.sh"
 
 # Import ~/.bashrc (2025-09-04) converted to be zsh compatible
 source ~/.zshrc.bashrc

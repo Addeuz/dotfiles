@@ -2,3 +2,5 @@
 vim.g.root_spec = { { ".git", "lua" }, "cwd" }
 
 vim.opt.scrolloff = 15
+
+vim.opt.termguicolors = true
