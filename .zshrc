@@ -2,7 +2,6 @@
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 export COLORTERM=truecolor
-export TERM=xterm-256color
 
 # Custom ZSH path so it can be tracked with git
 export ZSH_CUSTOM="$HOME/.config/zsh/custom"
