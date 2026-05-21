@@ -1,0 +1,13 @@
+[selection]
+save_to_clipboard = true
+
+[font]
+size = 14.0
+
+[font.normal]
+family = "JetBrains Mono"
+
+[[keyboard.bindings]]
+key = "Back"
+mods = "Control"
+chars = ""

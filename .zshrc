@@ -108,7 +108,7 @@ alias bat="batcat"
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias lazygitcfg='lazygit --git-dir=$HOME/.cfg --work-tree=$HOME'
 
-alias dev="sh $HOME/scripts/dev.sh"
+alias dev="$HOME/scripts/dev.sh"
 
 # Import ~/.bashrc (2025-09-04) converted to be zsh compatible
 source ~/.zshrc.bashrc

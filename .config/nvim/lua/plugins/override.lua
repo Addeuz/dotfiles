@@ -17,11 +17,33 @@ return {
         return original(opts)
       end
     end,
+    opts = function(_, opts)
+      opts.sections.lualine_y = {}
+      opts.sections.lualine_z = {
+        { "progress", separator = " ", padding = { left = 1, right = 0 } },
+        { "location", padding = { left = 0, right = 1 } },
+      }
+      return opts
+    end,
   },
   {
     "lewis6991/gitsigns.nvim",
     opts = {
       current_line_blame = true,
+    },
+  },
+  {
+    "folke/todo-comments.nvim",
+    opts = {
+      highlight = {
+        pattern = {
+          [[.*<(KEYWORDS)\s*:]],
+          [[.*<(KEYWORDS)#[^:\s]+\s*:]],
+        },
+      },
+      search = {
+        pattern = [[\b(KEYWORDS)(#[^\s:]+)?:]],
+      },
     },
   },
 }
