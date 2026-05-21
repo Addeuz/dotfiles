@@ -38,7 +38,7 @@ return {
       highlight = {
         pattern = {
           [[.*<(KEYWORDS)\s*:]],
-          [[.*<(KEYWORDS)#[^:\s]+\s*:]],
+          [[.*<((KEYWORDS)#[^:\s]+)\s*:]],
         },
       },
       search = {
