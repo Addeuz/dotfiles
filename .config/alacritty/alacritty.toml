@@ -1,8 +1,11 @@
+[window]
+dynamic_padding = true
+
 [selection]
 save_to_clipboard = true
 
 [font]
-size = 14.0
+size = 14
 
 [font.normal]
 family = "JetBrainsMono Nerd Font"
@@ -11,3 +14,8 @@ family = "JetBrainsMono Nerd Font"
 key = "Back"
 mods = "Control"
 chars = ""
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001B\r"
