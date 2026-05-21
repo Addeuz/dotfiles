@@ -83,6 +83,7 @@ plugins=(
 )
 
 KUBE_PS1_NS_ENABLE=false
+ZLE_RPROMPT_INDENT=0
 
 source $ZSH/oh-my-zsh.sh
 

@@ -375,10 +375,16 @@ build_prompt() {
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
 
-### Right prompt — kubectl context
+### Right prompt
 
 : ${AGNOSTER_KUBE_FG:=#2A2F41}
 : ${AGNOSTER_KUBE_BG:=#7aa2f7}
+: ${AGNOSTER_GCLOUD_FG:=#2A2F41}
+: ${AGNOSTER_GCLOUD_BG:=#9ece6a}
+: ${AGNOSTER_DURATION_FG:=#2A2F41}
+: ${AGNOSTER_DURATION_SHORT_BG:=#9ece6a}   # < 30s  green
+: ${AGNOSTER_DURATION_MED_BG:=#e0af68}     # < 2m   yellow
+: ${AGNOSTER_DURATION_LONG_BG:=#f7768e}    # >= 2m  red
 
 CURRENT_RBG='NONE'
 
@@ -400,44 +406,134 @@ rprompt_end() {
   CURRENT_RBG='NONE'
 }
 
-# Show kubectl context when: typing a k8s tool in the current buffer,
-# last command used a k8s tool, or cwd contains k8s project files.
-_KUBE_LAST_CMD=""
-_KUBE_SHOW=0
-_KUBE_SHOW_CMD=0
-_KUBE_TOOLS_RE="(^|[[:space:];|&])(kubectl|helm|k9s|kubens|kubectx|kustomize|flux|argocd|istioctl|kubeadm)"
+### Generic context relevance system
+# Register a context with: _context_register <name> <tools-regex> [dir-files...]
+# Access show state with: $_CONTEXT_SHOW[name]
 
-_prompt_kube_preexec() { _KUBE_LAST_CMD="$1" }
+typeset -gA _CONTEXT_TOOLS_RE
+typeset -gA _CONTEXT_SHOW
+typeset -gA _CONTEXT_SHOW_CMD
+typeset -gA _CONTEXT_DIR_FILES
 
-_prompt_kube_precmd() {
-  if [[ "${KUBE_PS1_ENABLED}" == "off" ]]; then
-    _KUBE_SHOW_CMD=0
-  elif [[ "$_KUBE_LAST_CMD" =~ $_KUBE_TOOLS_RE ]] || \
-       [[ -f Chart.yaml || -f kustomization.yaml || -f kustomization.yml ]]; then
-    _KUBE_SHOW_CMD=1
-  else
-    _KUBE_SHOW_CMD=0
-  fi
-  _KUBE_SHOW=$_KUBE_SHOW_CMD
-  _KUBE_LAST_CMD=""
+_context_register() {
+  local name=$1 tools_re=$2
+  shift 2
+  _CONTEXT_TOOLS_RE[$name]=$tools_re
+  _CONTEXT_DIR_FILES[$name]="${(j: :)@}"
+  _CONTEXT_SHOW[$name]=0
+  _CONTEXT_SHOW_CMD[$name]=0
 }
 
-_prompt_kube_zle_update() {
-  if [[ "${KUBE_PS1_ENABLED}" != "off" && "$BUFFER" =~ $_KUBE_TOOLS_RE ]]; then
-    _KUBE_SHOW=1
+_context_register kubectl \
+  "(^|[[:space:];|&])(kubectl|helm|k9s|kubens|kubectx|kustomize|flux|argocd|istioctl|kubeadm)" \
+  Chart.yaml kustomization.yaml kustomization.yml
+
+_context_register gcloud \
+  "(^|[[:space:];|&])(gcloud|gsutil|bq)" \
+  .gcloudignore app.yaml cloudbuild.yaml
+
+### Command duration
+
+zmodload zsh/datetime
+_CMD_START_TIME=0
+_CMD_DURATION=""
+_CMD_DURATION_SECS=0
+
+_format_duration() {
+  local secs=$1
+  if (( secs < 60 )); then
+    echo "${secs}s"
+  elif (( secs < 3600 )); then
+    echo "$((secs / 60))m$((secs % 60))s"
   else
-    _KUBE_SHOW=$_KUBE_SHOW_CMD
+    echo "$((secs / 3600))h$(( (secs % 3600) / 60 ))m"
   fi
+}
+
+### Shared hooks
+
+_RPROMPT_LAST_CMD=""
+
+_rprompt_preexec() {
+  _RPROMPT_LAST_CMD="$1"
+  _CMD_START_TIME=$EPOCHREALTIME
+}
+
+_rprompt_precmd() {
+  # Duration
+  if (( _CMD_START_TIME > 0 )); then
+    local elapsed=$(( EPOCHREALTIME - _CMD_START_TIME ))
+    local secs=${elapsed%%.*}
+    if (( secs >= 5 )); then
+      _CMD_DURATION_SECS=$secs
+      _CMD_DURATION="$(_format_duration $secs)"
+    else
+      _CMD_DURATION_SECS=0
+      _CMD_DURATION=""
+    fi
+    _CMD_START_TIME=0
+  else
+    _CMD_DURATION_SECS=0
+    _CMD_DURATION=""
+  fi
+
+  # Context relevance
+  local name f show
+  for name in ${(k)_CONTEXT_TOOLS_RE}; do
+    show=0
+    if [[ "$_RPROMPT_LAST_CMD" =~ ${_CONTEXT_TOOLS_RE[$name]} ]]; then
+      show=1
+    else
+      for f in ${=_CONTEXT_DIR_FILES[$name]}; do
+        [[ -f $f ]] && { show=1; break }
+      done
+    fi
+    _CONTEXT_SHOW_CMD[$name]=$show
+    _CONTEXT_SHOW[$name]=$show
+  done
+  _RPROMPT_LAST_CMD=""
+}
+
+_rprompt_zle_update() {
+  local name new_show changed=0
+  for name in ${(k)_CONTEXT_TOOLS_RE}; do
+    if [[ "$BUFFER" =~ ${_CONTEXT_TOOLS_RE[$name]} ]]; then
+      new_show=1
+    else
+      new_show=${_CONTEXT_SHOW_CMD[$name]}
+    fi
+    if [[ $new_show -ne ${_CONTEXT_SHOW[$name]} ]]; then
+      _CONTEXT_SHOW[$name]=$new_show
+      changed=1
+    fi
+  done
+  [[ $changed -eq 1 ]] && zle reset-prompt
 }
 
 autoload -Uz add-zsh-hook add-zle-hook-widget
-add-zsh-hook preexec _prompt_kube_preexec
-add-zsh-hook precmd _prompt_kube_precmd
-zle -N _prompt_kube_zle_update
-add-zle-hook-widget zle-line-pre-redraw _prompt_kube_zle_update
+add-zsh-hook preexec _rprompt_preexec
+add-zsh-hook precmd _rprompt_precmd
+zle -N _rprompt_zle_update
+add-zle-hook-widget zle-line-pre-redraw _rprompt_zle_update
+
+### Segment renderers
+
+prompt_duration() {
+  [[ -z "$_CMD_DURATION" ]] && return
+  local bg
+  if (( _CMD_DURATION_SECS < 30 )); then
+    bg=$AGNOSTER_DURATION_SHORT_BG
+  elif (( _CMD_DURATION_SECS < 120 )); then
+    bg=$AGNOSTER_DURATION_MED_BG
+  else
+    bg=$AGNOSTER_DURATION_LONG_BG
+  fi
+  rprompt_segment "$bg" "$AGNOSTER_DURATION_FG" "󱎫 $_CMD_DURATION"
+}
 
 prompt_kube() {
-  [[ $_KUBE_SHOW -eq 0 ]] && return
+  [[ "${KUBE_PS1_ENABLED}" == "off" ]] && return
+  [[ ${_CONTEXT_SHOW[kubectl]} -eq 0 ]] && return
   (( $+commands[kubectl] )) || return
   local context
   context=$(kubectl config current-context 2>/dev/null) || return
@@ -451,8 +547,19 @@ prompt_kube() {
   rprompt_segment "$AGNOSTER_KUBE_BG" "$AGNOSTER_KUBE_FG" "⎈ ${display}"
 }
 
+prompt_gcloud() {
+  [[ ${_CONTEXT_SHOW[gcloud]} -eq 0 ]] && return
+  (( $+commands[gcloud] )) || return
+  local project
+  project=$(gcloud config get-value project 2>/dev/null)
+  [[ -z "$project" || "$project" == "(unset)" ]] && return
+  rprompt_segment "$AGNOSTER_GCLOUD_BG" "$AGNOSTER_GCLOUD_FG" "☁ ${project}"
+}
+
 build_rprompt() {
   CURRENT_RBG='NONE'
+  prompt_duration
+  prompt_gcloud
   prompt_kube
   rprompt_end
 }
