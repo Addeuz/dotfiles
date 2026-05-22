@@ -18,12 +18,12 @@ family = "JetBrainsMono Nerd Font"
 [[keyboard.bindings]]
 key = "Slash"
 mods = "Control"
-chars = "\x1f"
+chars = "\u001F"
 
 [[keyboard.bindings]]
 key = "Back"
 mods = "Control"
-chars = ""
+chars = "\u001F"
 
 [[keyboard.bindings]]
 key = "Return"
