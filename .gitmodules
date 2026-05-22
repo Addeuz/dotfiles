@@ -25,3 +25,7 @@
 [submodule ".tmux/plugins/tpm"]
 	path = .tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm
+
+[submodule ".claude/plugins/marketplaces/svelte"]
+	path = .claude/plugins/marketplaces/svelte
+	url = https://github.com/sveltejs/ai-tools

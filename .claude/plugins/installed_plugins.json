@@ -1,0 +1,45 @@
+{
+  "version": 2,
+  "plugins": {
+    "rust-analyzer-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/andreas/.claude/plugins/cache/claude-plugins-official/rust-analyzer-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-03-10T06:19:50.599Z",
+        "lastUpdated": "2026-03-10T06:19:50.599Z",
+        "gitCommitSha": "205b6e0b30366a969412d9aab7b99bea99d58db1"
+      }
+    ],
+    "svelte@svelte": [
+      {
+        "scope": "project",
+        "projectPath": "/home/andreas/gitrepos/dfmain",
+        "installPath": "/home/andreas/.claude/plugins/cache/svelte/svelte/1.0.4",
+        "version": "1.0.4",
+        "installedAt": "2026-03-19T07:42:27.056Z",
+        "lastUpdated": "2026-03-19T07:42:27.056Z",
+        "gitCommitSha": "e5ce7437c42045e24926a5e763a842f1c28db25f"
+      }
+    ],
+    "typescript-lsp@claude-plugins-official": [
+      {
+        "scope": "project",
+        "projectPath": "/home/andreas/gitrepos/dfmain",
+        "installPath": "/home/andreas/.claude/plugins/cache/claude-plugins-official/typescript-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-04-18T09:02:19.108Z",
+        "lastUpdated": "2026-04-18T09:02:19.108Z"
+      }
+    ],
+    "lua-lsp@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/home/andreas/.claude/plugins/cache/claude-plugins-official/lua-lsp/1.0.0",
+        "version": "1.0.0",
+        "installedAt": "2026-05-18T13:52:42.136Z",
+        "lastUpdated": "2026-05-18T13:52:42.136Z"
+      }
+    ]
+  }
+}
