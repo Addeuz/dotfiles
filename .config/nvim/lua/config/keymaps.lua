@@ -2,6 +2,10 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
+vim.keymap.set({ "n", "t" }, "<C-_>", function()
+  Snacks.terminal()
+end, { desc = "Terminal (Root Dir)" })
+
 vim.keymap.set("n", "<M-h>", function()
   if vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }) then
     vim.lsp.inlay_hint.enable(false, { bufnr = 0 })

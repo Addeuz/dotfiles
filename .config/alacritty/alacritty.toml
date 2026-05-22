@@ -16,6 +16,11 @@ size = 14
 family = "JetBrainsMono Nerd Font"
 
 [[keyboard.bindings]]
+key = "Slash"
+mods = "Control"
+chars = "\x1f"
+
+[[keyboard.bindings]]
 key = "Back"
 mods = "Control"
 chars = ""
