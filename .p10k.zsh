@@ -54,6 +54,7 @@
     # nodenv                  # node.js version from nodenv (https://github.com/nodenv/nodenv)
     # nvm                     # node.js version from nvm (https://github.com/nvm-sh/nvm)
     # nodeenv                 # node.js environment (https://github.com/ekalinin/nodeenv)
+    my_pnpm_version      # pnpm version (custom)
     node_version          # node.js version
     # go_version            # go version (https://golang.org)
     rust_version          # rustc version (https://www.rust-lang.org)
@@ -1065,11 +1066,16 @@
   # Custom icon.
   # typeset -g POWERLEVEL9K_NODEENV_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
+  #######################[ my_pnpm_version: pnpm version ]########################
+  typeset -g POWERLEVEL9K_MY_PNPM_VERSION_FOREGROUND='#f9ad00'
+  typeset -g POWERLEVEL9K_MY_PNPM_VERSION_SHOW_ON_UPGLOB='pnpm-lock.yaml|pnpm-workspace.yaml'
+
   ##############################[ node_version: node.js version ]###############################
   # Node version color.
   typeset -g POWERLEVEL9K_NODE_VERSION_FOREGROUND=2
-  # Show node version only when in a directory tree containing package.json.
-  typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=true
+  # Show node version when in a directory tree containing any of these files.
+  typeset -g POWERLEVEL9K_NODE_VERSION_PROJECT_ONLY=false
+  typeset -g POWERLEVEL9K_NODE_VERSION_SHOW_ON_UPGLOB='package.json|pnpm-lock.yaml|pnpm-workspace.yaml'
   # Custom icon.
   # typeset -g POWERLEVEL9K_NODE_VERSION_VISUAL_IDENTIFIER_EXPANSION='⭐'
 
@@ -1675,6 +1681,18 @@
   # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS. It displays an icon and orange text greeting the user.
   #
   # Type `p10k help segment` for documentation and a more sophisticated example.
+  function prompt_my_pnpm_version() {
+    local pnpm=$commands[pnpm]
+    [[ -n $pnpm ]] || return
+    local v
+    v=$($pnpm --version 2>/dev/null) || return
+    p10k segment -f 6 -i $' ' -t "${v//\%/%%}"
+  }
+
+  function instant_prompt_my_pnpm_version() {
+    prompt_my_pnpm_version
+  }
+
   function prompt_example() {
     p10k segment -f 208 -i '⭐' -t 'hello, %n'
   }
