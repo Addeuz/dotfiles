@@ -81,7 +81,6 @@ plugins=(
     kubectl
     just
     gcloud
-    nats
     pnpm
     pnpm-shell-completion
     zsh-interactive-cd
