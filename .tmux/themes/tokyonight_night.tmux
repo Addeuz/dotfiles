@@ -24,10 +24,6 @@ set -g status-right-style NONE
 set -g status-left "#[fg=#15161e,bg=#7aa2f7,bold] #S #[fg=#7aa2f7,bg=#16161e,nobold,nounderscore,noitalics]"
 set -g status-right "#[fg=#16161e,bg=#16161e,nobold,nounderscore,noitalics]#[fg=#7aa2f7,bg=#16161e]#{prefix_highlight}#{?#{||:#{client_prefix},#{pane_in_mode}},#[fg=#7aa2f7]#[bg=#9ece6a],#[fg=#7aa2f7]#[bg=#16161e]}#[fg=#15161e,bg=#7aa2f7,bold] %Y-%m-%d  %H:%M "
 
-if-shell '[ -n "$SSH_CLIENT" ]' {
-  set -g status-right "#[fg=#16161e,bg=#16161e,nobold,nounderscore,noitalics]#[fg=#7aa2f7,bg=#16161e]#{prefix_highlight}#{?#{||:#{client_prefix},#{pane_in_mode}},#[fg=#3b4261]#[bg=#9ece6a],#[fg=#3b4261]#[bg=#16161e]}#[fg=#7aa2f7,bg=#3b4261] %Y-%m-%d  %H:%M #[fg=#7aa2f7,bg=#3b4261,nobold,nounderscore,noitalics]#[fg=#15161e,bg=#7aa2f7,bold] ssh "
-}
-
 setw -g window-status-activity-style "underscore,fg=#a9b1d6,bg=#16161e"
 setw -g window-status-separator ""
 setw -g window-status-style "NONE,fg=#a9b1d6,bg=#16161e"
