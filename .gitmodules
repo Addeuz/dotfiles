@@ -29,3 +29,6 @@
 [submodule ".claude/plugins/marketplaces/svelte"]
 	path = .claude/plugins/marketplaces/svelte
 	url = https://github.com/sveltejs/ai-tools
+[submodule ".tmux/plugins/tmux-prefix-highlight"]
+	path = .tmux/plugins/tmux-prefix-highlight
+	url = https://github.com/tmux-plugins/tmux-prefix-highlight
