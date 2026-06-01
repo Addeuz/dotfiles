@@ -1,23 +1,5 @@
 {
-  "model": "opus[1m]",
-  "enabledPlugins": {
-    "rust-analyzer-lsp@claude-plugins-official": true,
-    "lua-lsp@claude-plugins-official": true
-  },
-  "extraKnownMarketplaces": {
-    "svelte": {
-      "source": {
-        "source": "github",
-        "repo": "sveltejs/ai-tools"
-      }
-    }
-  },
-  "voice": {
-    "enabled": true,
-    "mode": "hold"
-  },
-  "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
+  "model": "sonnet[1m]",
   "hooks": {
     "SessionStart": [
       {
@@ -79,5 +61,23 @@
         ]
       }
     ]
-  }
+  },
+  "enabledPlugins": {
+    "rust-analyzer-lsp@claude-plugins-official": true,
+    "lua-lsp@claude-plugins-official": true
+  },
+  "extraKnownMarketplaces": {
+    "svelte": {
+      "source": {
+        "source": "github",
+        "repo": "sveltejs/ai-tools"
+      }
+    }
+  },
+  "voice": {
+    "enabled": true,
+    "mode": "hold"
+  },
+  "skipAutoPermissionPrompt": true,
+  "voiceEnabled": true
 }
