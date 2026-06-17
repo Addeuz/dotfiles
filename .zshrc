@@ -122,7 +122,7 @@ alias bat="batcat"
 alias cfg='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias lazygitcfg='lazygit --git-dir=$HOME/.cfg --work-tree=$HOME'
 
-alias dev="/usr/bin/bash $HOME/scripts/dev.sh"
+eval "$(direnv hook zsh)"
 
 # Import ~/.bashrc (2025-09-04) converted to be zsh compatible
 source ~/.zshrc.bashrc
@@ -139,6 +139,9 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 
 # claude
 export PATH="$HOME/.local/bin:$PATH"
+
+# custom scripts
+export PATH="$HOME/scripts:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
