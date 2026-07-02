@@ -1,0 +1,85 @@
+{
+  "profiles" : [
+    {
+      "id" : "CBAFD010-F527-405B-A554-6498F1E0BBD9",
+      "name" : "Default",
+      "workspaces" : [
+        {
+          "apps" : [
+            {
+              "bundleIdentifier" : "org.alacritty",
+              "iconPath" : "/Applications/Alacritty.app/Contents/Resources/alacritty.icns",
+              "name" : "Alacritty"
+            }
+          ],
+          "display" : "DELL U2415",
+          "id" : "8CA606DE-7A1E-4048-99E1-312E182A571D",
+          "name" : "Coding",
+          "openAppsOnActivation" : false,
+          "shortcut" : "cmd+ctrl+opt+shift+y",
+          "symbolIconName" : "apple.terminal"
+        },
+        {
+          "apps" : [
+            {
+              "bundleIdentifier" : "com.google.Chrome",
+              "iconPath" : "/Applications/Google Chrome.app/Contents/Resources/app.icns",
+              "name" : "Google Chrome"
+            }
+          ],
+          "display" : "DELL U2415",
+          "id" : "0DD07A83-17BA-4DE5-B6A3-D7DF48C196B3",
+          "name" : "Browser",
+          "openAppsOnActivation" : false,
+          "shortcut" : "cmd+ctrl+opt+shift+u",
+          "symbolIconName" : "globe"
+        },
+        {
+          "apps" : [
+            {
+              "bundleIdentifier" : "com.apple.MobileSMS",
+              "iconPath" : "/System/Applications/Messages.app/Contents/Resources/AppIcon.icns",
+              "name" : "Messages"
+            },
+            {
+              "bundleIdentifier" : "com.tinyspeck.slackmacgap",
+              "iconPath" : "/Applications/Slack.app/Contents/Resources/electron.icns",
+              "name" : "Slack"
+            }
+          ],
+          "display" : "DELL U2415",
+          "id" : "D9DE3B05-92FC-41E3-A100-392F08A94477",
+          "name" : "Messaging",
+          "openAppsOnActivation" : false,
+          "shortcut" : "cmd+ctrl+opt+shift+i",
+          "symbolIconName" : "message"
+        },
+        {
+          "apps" : [
+            {
+              "bundleIdentifier" : "com.spotify.client",
+              "iconPath" : "/Applications/Spotify.app/Contents/Resources/AppIcon.icns",
+              "name" : "Spotify"
+            }
+          ],
+          "display" : "DELL U2415",
+          "id" : "E7A850EE-2991-4B27-ADD2-5267FDDFE476",
+          "name" : "Spotify",
+          "openAppsOnActivation" : false,
+          "shortcut" : "cmd+ctrl+opt+shift+o",
+          "symbolIconName" : "music.note.list"
+        },
+        {
+          "apps" : [
+
+          ],
+          "display" : "DELL U2415",
+          "id" : "50B4A2BF-C64D-4573-A66C-4E3B900FA17E",
+          "name" : "Empty",
+          "openAppsOnActivation" : false,
+          "shortcut" : "cmd+ctrl+opt+shift+p"
+        }
+      ]
+    }
+  ]
+}
