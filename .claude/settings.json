@@ -1,67 +1,4 @@
 {
-  "model": "opus[1m]",
-  "hooks": {
-    "SessionStart": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux rename-window -t $(tmux display-message -p -t \"$TMUX_PANE\" '#I') \"🤖 $(basename $CLAUDE_PROJECT_DIR)\""
-          }
-        ]
-      }
-    ],
-    "UserPromptSubmit": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux rename-window -t $(tmux display-message -p -t \"$TMUX_PANE\" '#I') \"⚡ $(basename $CLAUDE_PROJECT_DIR)\""
-          }
-        ]
-      }
-    ],
-    "Notification": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux rename-window -t $(tmux display-message -p -t \"$TMUX_PANE\" '#I') \"💬 $(basename $CLAUDE_PROJECT_DIR)\""
-          }
-        ]
-      }
-    ],
-    "PermissionRequest": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux rename-window -t $(tmux display-message -p -t \"$TMUX_PANE\" '#I') \"💬 $(basename $CLAUDE_PROJECT_DIR)\""
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux rename-window -t $(tmux display-message -p -t \"$TMUX_PANE\" '#I') \"🤖 $(basename $CLAUDE_PROJECT_DIR)\""
-          }
-        ]
-      }
-    ],
-    "SessionEnd": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "tmux set-window-option -t $(tmux display-message -p -t \"$TMUX_PANE\" '#I') automatic-rename on"
-          }
-        ]
-      }
-    ]
-  },
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true
@@ -74,11 +11,15 @@
       }
     }
   },
+  "effortLevel": "high",
   "tui": "fullscreen",
   "voice": {
     "enabled": true,
     "mode": "hold"
   },
+  "editorMode": "normal",
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true
+  "voiceEnabled": true,
+  "model": "opus[1m]",
+  "preferredNotifChannel": "ghostty"
 }
