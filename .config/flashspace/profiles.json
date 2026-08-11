@@ -10,6 +10,11 @@
               "bundleIdentifier" : "org.alacritty",
               "iconPath" : "/Applications/Alacritty.app/Contents/Resources/alacritty.icns",
               "name" : "Alacritty"
+            },
+            {
+              "bundleIdentifier" : "com.mitchellh.ghostty",
+              "iconPath" : "/Applications/Ghostty.app/Contents/Resources/Ghostty.icns",
+              "name" : "Ghostty"
             }
           ],
           "display" : "DELL U2415",
