@@ -1,0 +1,23 @@
+# Migrated from ~/.config/alacritty/alacritty.toml
+
+# Theme: TokyoNight Night. The built-in theme duplicates normal colors into the
+# bright slots; these overrides restore the brighter brights from the Alacritty theme.
+theme = TokyoNight
+palette = 9=#ff899d
+palette = 10=#9fe044
+palette = 11=#faba4a
+palette = 12=#8db0ff
+palette = 13=#c7a9ff
+palette = 14=#a4daff
+
+# Font
+font-family = "JetBrainsMono Nerd Font"
+font-size = 12
+
+# Window
+window-decoration = none
+window-padding-balance = true
+
+# Selection: copy to the system clipboard, not just the selection clipboard
+copy-on-select = clipboard
+
