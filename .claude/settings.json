@@ -1,4 +1,5 @@
 {
+  "model": "opus[1m]",
   "enabledPlugins": {
     "rust-analyzer-lsp@claude-plugins-official": true,
     "lua-lsp@claude-plugins-official": true
@@ -18,8 +19,46 @@
     "mode": "hold"
   },
   "editorMode": "normal",
+  "preferredNotifChannel": "ghostty",
+  "autoCompactEnabled": false,
   "skipAutoPermissionPrompt": true,
-  "voiceEnabled": true,
-  "model": "opus[1m]",
-  "preferredNotifChannel": "ghostty"
+  "autoMode": {
+    "allow": [
+      "$defaults",
+      "Bash(psql:*) in this project — routine local Postgres access seen 10× in transcripts",
+      "Bash(redis-cli:*) in this project — routine local Redis access seen 7× in transcripts",
+      "Bash(pwd) — trivial read-only, seen 11× in transcripts"
+    ],
+    "soft_deny": [
+      "$defaults",
+      "Git tag push other than `prod-deploy-*` without `ALLOW_TAG_PUSH=1` (repo convention in CLAUDE.md)",
+      "Writes to `config/local-overrides/*_prod.sh`, `config/local/bankid/issuer_prod_cert.txt`, or `tmp/secrets/*` credential files"
+    ],
+    "environment": [
+      "### Org-wide",
+      "**Organization**: Diffinder (gitlab.com/diffinder)",
+      "**Cloud provider(s)**: None configured",
+      "**Repository visibility**: Not queryable via gh (origin is gitlab.com, not github.com) — assume private (no public-indicating signals found)",
+      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
+      "**Secrets management**: Local secret files under `tmp/secrets/`, `config/local/`, `config/local-overrides/`, and `config/remote_secrets.txt` (service-account credentials, BankID prod cert, SKV/Fortnox/Spiris/Checkbiz/SendGrid credentials) — treat as sensitive, never commit or transmit",
+      "**Default / protected branches**: `master` (default branch, per repo facts) — protection status not queryable via gh for this host; treat `master` and any `prod-deploy-*` tag as protected per CLAUDE.md conventions (tags pushed by name only, never `--tags`)",
+      "**CI/CD deploy targets**: GitLab CI on gitlab.com/diffinder/dfmain; deploys tagged `prod-deploy-YYYYMMDD`; pushes default to `-o ci.skip` unless a CI run is explicitly requested",
+      "**Network posture**: None configured",
+      "**Source control**: GitLab — gitlab.com/diffinder/dfmain (origin, fetch+push) — no additional orgs configured",
+      "**Trusted internal domains**: wiki.diffinder.se, docs.diffinder.se, www.diffinder.se (from README and config)",
+      "**Trusted cloud buckets**: www.diffinder.se (config-derived — not a confirmed upload destination; uploads of local data still require confirmation)",
+      "**Key internal services**: gitlab.com API (MR fetch/comment tooling in `tools/cloud/`); local Postgres (`psql`) and Redis (`redis-cli`) used routinely in this project",
+      "**Internal package registry**: None configured",
+      "**Sensitive data locations & audiences**: `tmp/secrets/*` (audit/checkbiz/data/document-signing/sendgrid/worker service-account credentials, SKV OAuth/APIGW client secrets), `config/local/bankid/issuer_prod_cert.txt`, `config/local-overrides/local_fortnox_prod.sh`, `config/local-overrides/local_spiris_prod.sh`, `config/local-overrides/download_secrets.sh`, `config/remote_secrets.txt`, `tmp/nats_credentials_export.log`, `.env`/`.envrc`, `secrets/*`, `libraries/audit/dss_pades/library/secrets/*` — credentials and regulated Swedish audit/accounting data; share only with audiences cleared at the named+specifics bar",
+      "**Data retention / declassification**: None configured",
+      "**Sensitive remote targets**: any namespace/host/tag containing `prod`/`production` as a whole segment — notably `prod-deploy-*` tags and prod-cert/prod-secret config files (`local_fortnox_prod.sh`, `local_spiris_prod.sh`, `issuer_prod_cert.txt`)",
+      "**Protected deployment namespaces / environments**: `prod-deploy-*` git tags (push only by exact name, `--tags` is refused by the pre-push tag guard; non-deploy tags require `ALLOW_TAG_PUSH=1`)",
+      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything named/tagged with `prod`/`production` as a whole segment",
+      "### User-specific",
+      "**Primary use of Claude Code**: software development (Diffinder monorepo — Rust backend, SvelteKit frontend, ML tooling)",
+      "**Trusted repo**: /home/andreas/gitrepos/dfmain (gitlab.com/diffinder/dfmain, origin) — assumed private; confidential material OK here, but content ported from outside this repo is not its own work",
+      "**Org-specific CLIs**: `just` (task runner, primary), `glab` (GitLab CLI), `psql`/`redis-cli` (local dev DB access), `python tools/cloud/*.py` (GitLab MR tooling reading token from `~/.config/dfmain/gitlab-token`)"
+    ]
+  },
+  "voiceEnabled": true
 }
