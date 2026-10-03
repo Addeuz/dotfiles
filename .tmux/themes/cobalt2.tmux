@@ -37,4 +37,4 @@ setw -g window-status-current-format "#[fg=#15232d,bg=#3b5364,nobold,nounderscor
 set -g @prefix_highlight_fg '#142a3a'
 set -g @prefix_highlight_bg '#a5ff90'
 set -g @prefix_highlight_output_prefix "#[fg=#a5ff90]#[bg=#15232d]#[fg=#142a3a]#[bg=#a5ff90]"
-set -g @prefix_highlight_output_suffix ""
+set -g @prefix_highlight_output_suffix "#[fg=#a5ff90]#[bg=#15232d]"
