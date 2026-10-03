@@ -1,4 +1,6 @@
 return {
+  -- svelte injects css into <style> blocks, which needs the css parser
+  { "nvim-treesitter/nvim-treesitter", opts = { ensure_installed = { "css" } } },
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)

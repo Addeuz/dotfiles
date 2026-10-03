@@ -16,6 +16,22 @@ return {
       picker = {
         name = "snacks.pick",
       },
+      -- obsidian.nvim hardcodes its own colors; link them to the colorscheme instead
+      ui = {
+        hl_groups = {
+          ObsidianTodo = { link = "DiagnosticWarn" },
+          ObsidianDone = { link = "DiagnosticOk" },
+          ObsidianRightArrow = { link = "Operator" },
+          ObsidianTilde = { link = "Comment" },
+          ObsidianImportant = { link = "DiagnosticError" },
+          ObsidianBullet = { link = "@markup.list" },
+          ObsidianRefText = { link = "@markup.link.url" },
+          ObsidianExtLinkIcon = { link = "@markup.link" },
+          ObsidianTag = { link = "@tag" },
+          ObsidianBlockID = { link = "Comment" },
+          ObsidianHighlightText = { link = "Search" },
+        },
+      },
     },
   },
 }

@@ -1,0 +1,32 @@
+# -----------------------------------------------------------------------------
+# Cobalt2 Alacritty Colors
+# Theme: Cobalt2
+# Upstream: https://github.com/Addeuz/cobalt2.nvim/raw/main/extras/alacritty/cobalt2.toml
+# -----------------------------------------------------------------------------
+
+# Default colors
+[colors.primary]
+background = '#193549'
+foreground = '#ffffff'
+
+# Normal colors
+[colors.normal]
+black = '#000000'
+red = '#ff628c'
+green = '#3ad900'
+yellow = '#ffc600'
+blue = '#0088ff'
+magenta = '#fb94ff'
+cyan = '#80fcff'
+white = '#e1efff'
+
+# Bright colors
+[colors.bright]
+black = '#0050a4'
+red = '#ff628c'
+green = '#3ad900'
+yellow = '#ffc600'
+blue = '#0088ff'
+magenta = '#fb94ff'
+cyan = '#80fcff'
+white = '#ffffff'
