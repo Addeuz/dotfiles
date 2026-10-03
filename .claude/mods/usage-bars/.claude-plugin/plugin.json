@@ -1,0 +1,1 @@
+{ "name": "usage-bars", "version": "0.1.0", "description": "Five-hour, weekly and context usage bars under the prompt", "types": "./types/index.d.ts" }

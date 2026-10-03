@@ -9,6 +9,9 @@ return {
       -- mason-lspconfig's automatic_enable would otherwise still attach it,
       -- and it indexes the whole workspace root on every markdown buffer
       marksman = { enabled = false },
+      -- also installed via mason; attaching next to vtsls doubles every
+      -- reference and completion result in TS buffers
+      tsgo = { enabled = false },
       vtsls = {
         settings = {
           typescript = {
