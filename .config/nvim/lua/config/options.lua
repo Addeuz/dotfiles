@@ -5,6 +5,9 @@ vim.opt.scrolloff = 15
 
 vim.opt.termguicolors = true
 
+-- Wider insert-mode cursor (default is ver25, i.e. 25% of the cell width)
+vim.opt.guicursor = "n-v-c-sm:block,i-ci-ve:ver40,r-cr-o:hor20"
+
 -- Spellcheck against both English and Swedish dictionaries.
 -- LazyVim only turns `spell` on buffer-locally (text, plaintex, typst, gitcommit, markdown),
 -- so this just widens the language list for those buffers.
