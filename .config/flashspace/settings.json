@@ -24,7 +24,7 @@
   "focusNextWorkspaceWindow" : "cmd+ctrl+opt+shift+n",
   "focusPreviousWorkspaceWindow" : "cmd+ctrl+opt+shift+m",
   "keepUnassignedAppsOnSwitch" : false,
-  "loopWorkspaces" : true,
+  "loopWorkspaces" : false,
   "loopWorkspacesOnAllDisplays" : false,
   "menuBarDisplayAliases" : "",
   "menuBarTitleScriptPath" : "",
