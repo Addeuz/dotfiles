@@ -1,0 +1,42 @@
+{
+  "version": 3,
+  "skills": {
+    "find-skills": {
+      "source": "vercel-labs/skills",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/vercel-labs/skills.git",
+      "skillPath": "skills/find-skills/SKILL.md",
+      "skillFolderHash": "76a98a285cb0434f3d39e1a873823556330e398b",
+      "installedAt": "2026-10-19T12:53:41.065Z",
+      "updatedAt": "2026-10-19T12:53:41.065Z"
+    },
+    "claude-for-safari": {
+      "source": "SDLLL/claude-for-safari",
+      "sourceType": "github",
+      "sourceUrl": "https://github.com/SDLLL/claude-for-safari.git",
+      "skillPath": "SKILL.md",
+      "skillFolderHash": "8a1cd43e080e9db2c78f177af2df32d7f6b2ac5e",
+      "installedAt": "2026-10-19T13:00:44.000Z",
+      "updatedAt": "2026-10-19T13:00:44.000Z"
+    }
+  },
+  "dismissed": {
+    "findSkillsPrompt": true
+  },
+  "lastSelectedAgents": [
+    "amp",
+    "cline",
+    "codex",
+    "cursor",
+    "droid",
+    "gemini-cli",
+    "github-copilot",
+    "kilo",
+    "kimi-code-cli",
+    "opencode",
+    "pi",
+    "warp",
+    "zed",
+    "claude-code"
+  ]
+}
