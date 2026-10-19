@@ -29,3 +29,21 @@ vim.api.nvim_create_autocmd("SessionLoadPost", {
     end
   end,
 })
+
+-- A `:restart` session aborts on its first error (e.g. `tcd` into a deleted worktree), after it has set
+-- winwidth=1/winminwidth=0 but before restoring them. The next `:restart` then saves winwidth=1 and fails with
+-- E592 when it restores LazyVim's winminwidth=5, so every restart after that breaks. Reset them once the session ran.
+local win_sizes = { "winwidth", vim.o.winwidth, "winminwidth", vim.o.winminwidth }
+local win_heights = { "winheight", vim.o.winheight, "winminheight", vim.o.winminheight }
+vim.api.nvim_create_autocmd("UIEnter", {
+  group = vim.api.nvim_create_augroup("session_win_sizes", { clear = true }),
+  callback = function()
+    vim.schedule(function()
+      for _, o in ipairs({ win_sizes, win_heights }) do
+        vim.o[o[3]] = 0
+        vim.o[o[1]] = o[2]
+        vim.o[o[3]] = o[4]
+      end
+    end)
+  end,
+})
